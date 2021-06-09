@@ -12,7 +12,7 @@ export const getMovies = async (page: number, movies: any, sort: number) => {
       )
       .then((res) => res.data.results)
       .catch((err) => console.log(err));
-    result = movies.concat(newMovies);
+    result = movies.concat(sort? newMovies.reverse() : newMovies);
   } 
   return result;
 };
