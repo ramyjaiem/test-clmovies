@@ -1,33 +1,41 @@
 import React, { FC } from 'react';
 
+type asset =  {
+  name: string
+  logo: string
+  address : string
+}
 type Props = {
-  activeAsset: string;
-  onClick: (value: string) => void;
+  activeAsset : asset
+  onClick: (value: asset) => void;
 };
 
 const assets = [
   {
     name: 'Dai (DAI)',
     logo: 'dai.png',
+    address:"0x5d3a536e4d6dbd6114cc1ead35777bab948e3643"
   },
   {
     name: 'USD Coin (USDC)',
     logo: 'usdc.png',
+    address:"0x39aa39c021dfbae8fac545936693ac917d5e7563"
   },
   {
     name: 'Tether (USDT)',
     logo: 'usdt.png',
+    address:"0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9"
   },
 ];
 const CardMenu: FC<Props> = ({ onClick, activeAsset }) => {
   return (
-    <div className="w-full h-auto flex flex-row justify-between">
+    <div className="w-5/5 h-auto flex flex-col pr-4 pt-4">
       {assets.map((item) => (
         <div
-          className={`w-1/3 bg-white cursor-pointer rounded-md m-4 p-5 flex flex-row shadow-md ${
-            activeAsset === item.name ? 'bg-white' : 'bg-gray-300'
+          className={`w-full  bg-white cursor-pointer rounded-md m-4 p-5 flex flex-row shadow-md ${
+            activeAsset.name === item.name ? 'bg-white' : 'bg-gray-200'
           }`}
-          onClick={()=> onClick(item.name)}
+          onClick={()=> onClick(item)}
         >
           <img
             src={`/assets/images/${item.logo}`}
